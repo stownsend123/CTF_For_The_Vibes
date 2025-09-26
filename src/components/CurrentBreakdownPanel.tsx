@@ -1,29 +1,30 @@
-import React from 'react';
-import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
-import { formatCurrency } from '../../lib/utils';
+'use client'
+
+import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts'
+import { formatCurrency } from '@/lib/utils'
 
 interface CurrentBreakdownPanelProps {
   data: {
-    totalAuthorized: number;
-    totalObligated: number;
-    totalExpended: number;
-    remainingObligated: number;
-    executionRate: number;
-    burnRate: number;
-    fundsBreakdown: Array<{ name: string; value: number; color: string }>;
-  };
+    totalAuthorized: number
+    totalObligated: number
+    totalExpended: number
+    remainingObligated: number
+    executionRate: number
+    burnRate: number
+    fundsBreakdown: Array<{ name: string; value: number; color: string }>
+  }
 }
 
 export default function CurrentBreakdownPanel({ data }: CurrentBreakdownPanelProps) {
   const executionData = [
     { name: 'Executed', value: data.executionRate },
     { name: 'Remaining', value: 100 - data.executionRate }
-  ];
+  ]
 
   const burnData = [
     { name: 'Burned', value: data.burnRate },
     { name: 'Remaining', value: 100 - data.burnRate }
-  ];
+  ]
 
   return (
     <div className="bg-white rounded-lg shadow-lg p-6">
@@ -162,5 +163,5 @@ export default function CurrentBreakdownPanel({ data }: CurrentBreakdownPanelPro
         </div>
       </div>
     </div>
-  );
+  )
 }

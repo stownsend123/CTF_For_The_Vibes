@@ -1,10 +1,7 @@
-import { Budget } from '../types';
-
-// Mock data matching the dashboard design
 export const dashboardData = {
   fiscalYear: "FY 2X",
-  required: "$XXXX",
-  authorized: "$YYYY",
+  required: "Required: $XXXX",
+  authorized: "Authorized: $YYYY",
   
   submittedPlans: [
     {
@@ -14,9 +11,7 @@ export const dashboardData = {
       year: 2025,
       status: "submitted" as const,
       amount: 30524893.89,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      fiscalYear: "FY25"
+      fiscal_year: "FY25"
     },
     {
       id: "2", 
@@ -25,9 +20,7 @@ export const dashboardData = {
       year: 2025,
       status: "submitted" as const,
       amount: 25000000,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      fiscalYear: "FY25"
+      fiscal_year: "FY25"
     },
     {
       id: "3",
@@ -36,9 +29,7 @@ export const dashboardData = {
       year: 2025,
       status: "submitted" as const,
       amount: 15000000,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      fiscalYear: "FY25"
+      fiscal_year: "FY25"
     }
   ],
 
@@ -50,9 +41,7 @@ export const dashboardData = {
       year: 2026,
       status: "draft" as const,
       amount: 0,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      fiscalYear: "FY26"
+      fiscal_year: "FY26"
     },
     {
       id: "5",
@@ -61,9 +50,7 @@ export const dashboardData = {
       year: 2026,
       status: "draft" as const,
       amount: 0,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      fiscalYear: "FY26"
+      fiscal_year: "FY26"
     },
     {
       id: "6",
@@ -72,9 +59,7 @@ export const dashboardData = {
       year: 2026,
       status: "draft" as const,
       amount: 0,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      fiscalYear: "FY26"
+      fiscal_year: "FY26"
     },
     {
       id: "7",
@@ -83,9 +68,7 @@ export const dashboardData = {
       year: 2027,
       status: "draft" as const,
       amount: 0,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      fiscalYear: "FY27"
+      fiscal_year: "FY27"
     },
     {
       id: "8",
@@ -94,9 +77,7 @@ export const dashboardData = {
       year: 2027,
       status: "draft" as const,
       amount: 0,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      fiscalYear: "FY27"
+      fiscal_year: "FY27"
     }
   ],
 
@@ -114,4 +95,4 @@ export const dashboardData = {
       { name: 'I', value: 25, color: '#f59e0b' }
     ]
   }
-};
+}
