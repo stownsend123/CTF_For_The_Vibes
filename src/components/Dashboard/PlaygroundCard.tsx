@@ -1,5 +1,5 @@
 import React from 'react';
-import { HelpCircle, Plus, BarChart3 } from 'lucide-react';
+import { Circle as HelpCircle, Plus, ChartBar as BarChart3 } from 'lucide-react';
 
 interface PlaygroundCardProps {
   type: 'compare' | 'create' | 'draft';
