@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Home, FileText, DollarSign, Settings, Search, Bell, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Hop as Home, FileText, DollarSign, Settings, Search, Bell, ChevronLeft, ChevronRight } from 'lucide-react'
 
 const navigationItems = [
   { id: 'home', label: 'Home', icon: Home },
