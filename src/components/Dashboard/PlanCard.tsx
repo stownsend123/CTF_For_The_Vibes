@@ -12,37 +12,51 @@ export default function PlanCard({ type, year, title, onClick }: PlanCardProps) 
   const getIcon = () => {
     switch (type) {
       case 'execution':
-        return <DollarSign className="w-8 h-8 text-green-600" />;
+        return <DollarSign className="w-12 h-12 text-green-600" />;
       case 'spend':
-        return <FileText className="w-8 h-8 text-blue-600" />;
+        return <FileText className="w-12 h-12 text-blue-600" />;
       case 'ufr':
-        return <CreditCard className="w-8 h-8 text-red-600" />;
+        return <CreditCard className="w-12 h-12 text-red-600" />;
       default:
-        return <DollarSign className="w-8 h-8 text-gray-600" />;
+        return <DollarSign className="w-12 h-12 text-gray-600" />;
     }
   };
 
-  const getBgColor = () => {
+  const getCardStyle = () => {
     switch (type) {
       case 'execution':
-        return 'bg-green-50 border-green-200';
+        return 'border-l-4 border-green-500 hover:border-green-600';
       case 'spend':
-        return 'bg-blue-50 border-blue-200';
+        return 'border-l-4 border-blue-500 hover:border-blue-600';
       case 'ufr':
-        return 'bg-red-50 border-red-200';
+        return 'border-l-4 border-red-500 hover:border-red-600';
       default:
-        return 'bg-gray-50 border-gray-200';
+        return 'border-l-4 border-gray-500';
     }
   };
 
   return (
     <div 
-      className={`p-4 rounded-lg border-2 cursor-pointer hover:shadow-md transition-shadow ${getBgColor()}`}
+      className={`usa-card plan-card cursor-pointer ${getCardStyle()}`}
       onClick={onClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => e.key === 'Enter' && onClick?.()}
     >
-      <div className="flex flex-col items-center text-center space-y-2">
-        {getIcon()}
-        <div className="text-sm font-medium text-gray-900">{title}</div>
+      <div className="usa-card__container">
+        <div className="usa-card__body text-center py-6">
+          <div className="flex flex-col items-center space-y-4">
+            <div className="p-3 rounded-full bg-gray-50">
+              {getIcon()}
+            </div>
+            <div>
+              <h3 className="usa-card__heading text-base font-semibold text-gray-900">
+                {title}
+              </h3>
+              <p className="text-sm text-gray-500 mt-1">Year {year}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -13,23 +13,35 @@ interface MetricCardProps {
 
 export default function MetricCard({ title, amount, subtitle, trend, trendValue, className = '' }: MetricCardProps) {
   return (
-    <div className={`bg-white p-4 rounded-lg border border-gray-200 ${className}`}>
-      <div className="text-sm text-gray-600 mb-1">{title}</div>
-      <div className="text-2xl font-bold text-gray-900 mb-1">
-        {formatCurrency(amount)}
-      </div>
-      {subtitle && (
-        <div className="text-xs text-gray-500 mb-2">{subtitle}</div>
-      )}
-      {trend && trendValue && (
-        <div className={`flex items-center text-xs ${
-          trend === 'up' ? 'text-red-600' : trend === 'down' ? 'text-green-600' : 'text-gray-600'
-        }`}>
-          {trend === 'up' && <TrendingUp size={12} className="mr-1" />}
-          {trend === 'down' && <TrendingDown size={12} className="mr-1" />}
-          <span>{trendValue}</span>
+    <div className={`usa-card usa-card--header-first metric-card animate-fade-in-up ${className}`}>
+      <div className="usa-card__container">
+        <div className="usa-card__header">
+          <h3 className="usa-card__heading text-sm font-semibold text-gray-600 uppercase tracking-wide">
+            {title}
+          </h3>
         </div>
-      )}
+        <div className="usa-card__body">
+          <div className="text-3xl font-bold text-gray-900 mb-2">
+            {formatCurrency(amount)}
+          </div>
+          {subtitle && (
+            <div className="text-sm text-gray-500 mb-3">{subtitle}</div>
+          )}
+          {trend && trendValue && (
+            <div className={`usa-tag usa-tag--small flex items-center ${
+              trend === 'up' 
+                ? 'usa-tag--accent-warm text-red-700' 
+                : trend === 'down' 
+                ? 'usa-tag--accent-cool text-green-700' 
+                : 'bg-gray-100 text-gray-700'
+            }`}>
+              {trend === 'up' && <TrendingUp size={12} className="mr-1" />}
+              {trend === 'down' && <TrendingDown size={12} className="mr-1" />}
+              <span className="text-xs font-medium">{trendValue}</span>
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
