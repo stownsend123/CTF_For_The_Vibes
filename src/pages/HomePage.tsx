@@ -1,39 +1,104 @@
 import React from 'react';
 import Header from '../components/Layout/Header';
+import DashboardSection from '../components/Dashboard/DashboardSection';
+import PlanCard from '../components/Dashboard/PlanCard';
+import PlaygroundCard from '../components/Dashboard/PlaygroundCard';
+import CurrentBreakdownPanel from '../components/Dashboard/CurrentBreakdownPanel';
+import { dashboardData } from '../data/mockData';
 
 export default function HomePage() {
+  const handlePlanClick = (planName: string) => {
+    console.log(`Clicked on ${planName}`);
+  };
+
+  const handlePlaygroundClick = (action: string) => {
+    console.log(`Clicked on ${action}`);
+  };
+
   return (
     <div className="flex-1 bg-gray-50">
       <Header 
         title="Home" 
-        fiscalYear="FY 2X" 
-        required="$XXXX" 
-        authorized="$YYYY" 
+        fiscalYear={dashboardData.fiscalYear}
+        required={dashboardData.required}
+        authorized={dashboardData.authorized}
       />
       
       <main className="p-6">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-white rounded-lg shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Dashboard Overview</h2>
-            <p className="text-gray-600 mb-6">
-              Welcome to the GIFF Air Force Financial Management System. Use the navigation to access different sections.
-            </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="bg-blue-50 p-6 rounded-lg border border-blue-200">
-                <h3 className="text-lg font-semibold text-blue-900 mb-2">Submitted Plans</h3>
-                <p className="text-blue-700">View and manage submitted financial plans</p>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* Left Column - Main Dashboard */}
+            <div className="lg:col-span-2 space-y-6">
+              {/* Submitted Plans Section */}
+              <DashboardSection title="Submitted">
+                {dashboardData.submittedPlans.map((plan) => (
+                  <PlanCard
+                    key={plan.id}
+                    type={plan.type}
+                    year={plan.year}
+                    title={plan.name}
+                    status={plan.status}
+                    onClick={() => handlePlanClick(plan.name)}
+                  />
+                ))}
+              </DashboardSection>
+
+              {/* Draft Submissions Section */}
+              <DashboardSection title="Draft Submissions">
+                {dashboardData.draftSubmissions.slice(0, 3).map((plan) => (
+                  <PlanCard
+                    key={plan.id}
+                    type={plan.type}
+                    year={plan.year}
+                    title={plan.name}
+                    status={plan.status}
+                    onClick={() => handlePlanClick(plan.name)}
+                  />
+                ))}
+              </DashboardSection>
+
+              {/* 2027 Draft Plans */}
+              <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6">
+                <div className="mb-4">
+                  <h3 className="text-lg font-semibold text-blue-900 mb-2">2027</h3>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {dashboardData.draftSubmissions.slice(3, 5).map((plan) => (
+                    <PlanCard
+                      key={plan.id}
+                      type={plan.type}
+                      year={plan.year}
+                      title={plan.name}
+                      status={plan.status}
+                      onClick={() => handlePlanClick(plan.name)}
+                    />
+                  ))}
+                </div>
               </div>
-              
-              <div className="bg-yellow-50 p-6 rounded-lg border border-yellow-200">
-                <h3 className="text-lg font-semibold text-yellow-900 mb-2">Draft Submissions</h3>
-                <p className="text-yellow-700">Work on draft financial submissions</p>
-              </div>
-              
-              <div className="bg-green-50 p-6 rounded-lg border border-green-200">
-                <h3 className="text-lg font-semibold text-green-900 mb-2">Current Breakdown</h3>
-                <p className="text-green-700">View current fund breakdown and metrics</p>
-              </div>
+
+              {/* Playground Section */}
+              <DashboardSection title="Playground">
+                <PlaygroundCard
+                  type="compare"
+                  title="Compare"
+                  onClick={() => handlePlaygroundClick('Compare')}
+                />
+                <PlaygroundCard
+                  type="create"
+                  title="Create Scenario"
+                  onClick={() => handlePlaygroundClick('Create Scenario')}
+                />
+                <PlaygroundCard
+                  type="draft"
+                  title="Draft Scenarios"
+                  onClick={() => handlePlaygroundClick('Draft Scenarios')}
+                />
+              </DashboardSection>
+            </div>
+
+            {/* Right Column - Current Breakdown */}
+            <div className="lg:col-span-1">
+              <CurrentBreakdownPanel data={dashboardData.currentBreakdown} />
             </div>
           </div>
         </div>
