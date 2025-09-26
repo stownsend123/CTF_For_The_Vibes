@@ -1,5 +1,5 @@
 import React from 'react';
-import { Hop as Home, FileText, DollarSign, Settings, Search, Bell, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Home, FileText, DollarSign, Settings, Search, Bell, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface SidebarProps {
   currentPage: string;
@@ -17,9 +17,9 @@ const navigationItems = [
 
 export default function Sidebar({ currentPage, onPageChange, isCollapsed, onToggleCollapse }: SidebarProps) {
   return (
-    <nav className={`usa-sidenav sidebar-nav ${isCollapsed ? 'w-16' : 'w-72'} transition-all duration-300 ease-in-out`}>
+    <nav className={`bg-gradient-to-b from-blue-700 to-blue-800 text-white shadow-xl ${isCollapsed ? 'w-16' : 'w-72'} transition-all duration-300 ease-in-out flex flex-col`}>
       {/* Header */}
-      <div className="usa-sidenav__item border-b border-blue-600 p-4">
+      <div className="p-4 border-b border-blue-600">
         <div className="flex items-center justify-between">
           {!isCollapsed && (
             <div className="flex items-center space-x-3">
@@ -34,7 +34,7 @@ export default function Sidebar({ currentPage, onPageChange, isCollapsed, onTogg
           )}
           <button
             onClick={onToggleCollapse}
-            className="usa-button usa-button--unstyled text-white hover:bg-blue-600 p-2 rounded-md transition-colors"
+            className="text-white hover:bg-blue-600 p-2 rounded-md transition-colors"
             aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
           >
             {isCollapsed ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
@@ -45,29 +45,27 @@ export default function Sidebar({ currentPage, onPageChange, isCollapsed, onTogg
       {/* Search */}
       {!isCollapsed && (
         <div className="p-4">
-          <div className="usa-search usa-search--small">
-            <div className="usa-search__input-group">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={16} />
-              <input
-                className="usa-input pl-10 bg-white/10 border-white/20 text-white placeholder-blue-200 focus:bg-white focus:text-gray-900 focus:placeholder-gray-500"
-                type="search"
-                name="search"
-                placeholder="Quick Search"
-              />
-            </div>
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-300" size={16} />
+            <input
+              className="w-full pl-10 pr-4 py-2 bg-blue-600/50 border border-blue-500 rounded-lg text-white placeholder-blue-200 focus:bg-white focus:text-gray-900 focus:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-300 transition-all"
+              type="search"
+              name="search"
+              placeholder="Quick Search"
+            />
           </div>
         </div>
       )}
 
       {/* Navigation */}
       <div className="flex-1 p-4">
-        <ul className="usa-sidenav__sublist space-y-2">
+        <ul className="space-y-2">
           {navigationItems.map((item) => {
             const Icon = item.icon;
             const isActive = currentPage === item.id;
             
             return (
-              <li key={item.id} className="usa-sidenav__item">
+              <li key={item.id}>
                 <button
                   onClick={() => onPageChange(item.id)}
                   className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-left transition-all duration-200 ${
@@ -88,7 +86,7 @@ export default function Sidebar({ currentPage, onPageChange, isCollapsed, onTogg
 
       {/* Notifications */}
       <div className="p-4 border-t border-blue-600">
-        <button className="usa-button usa-button--unstyled w-full flex items-center space-x-3 px-4 py-3 text-blue-100 hover:bg-blue-600 hover:text-white rounded-lg transition-colors">
+        <button className="w-full flex items-center space-x-3 px-4 py-3 text-blue-100 hover:bg-blue-600 hover:text-white rounded-lg transition-colors">
           <div className="relative">
             <Bell size={20} />
             <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>

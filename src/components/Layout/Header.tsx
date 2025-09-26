@@ -9,15 +9,15 @@ interface HeaderProps {
 
 export default function Header({ title, fiscalYear = "FY 2X", required = "$XXXX", authorized = "$YYYY" }: HeaderProps) {
   return (
-    <header className="usa-header usa-header--basic bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg">
-      <div className="usa-nav-container px-6 py-4">
+    <header className="bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg">
+      <div className="px-6 py-4">
         <div className="flex justify-between items-center">
           <div>
-            <h1 className="usa-header__logo-text text-3xl font-bold">{title}</h1>
+            <h1 className="text-3xl font-bold">{title}</h1>
             <p className="text-blue-100 text-sm mt-1">Air Force Financial Management System</p>
           </div>
           <div className="flex items-center space-x-6 text-sm">
-            <div className="usa-tag usa-tag--big bg-white/20 text-white border-white/30">
+            <div className="bg-white/20 text-white border border-white/30 px-4 py-2 rounded-full">
               <span className="font-semibold">{fiscalYear}</span>
             </div>
             <div className="flex items-center space-x-4">
