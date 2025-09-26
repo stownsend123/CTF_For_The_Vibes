@@ -1,3 +1,5 @@
+import { Budget } from '../types';
+
 // Mock data matching the dashboard design
 export const dashboardData = {
   fiscalYear: "FY 2X",
